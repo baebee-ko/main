@@ -1,466 +1,508 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>계정 삭제 - 배달의비번 (Baebee)</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background-color: #f8f9fa;
-            padding: 20px;
-        }
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+          line-height: 1.8;
+          color: #333;
+          background-color: #f8f9fa;
+          padding: 20px;
+      }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+      .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background-color: white;
+          padding: 40px;
+          border-radius: 8px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #dc3545;
-        }
+      .header {
+          text-align: center;
+          margin-bottom: 40px;
+          padding-bottom: 20px;
+          border-bottom: 3px solid #dc3545;
+      }
 
-        h1 {
-            font-size: 2.2em;
-            color: #dc3545;
-            margin-bottom: 10px;
-        }
+      h1 {
+          font-size: 2.2em;
+          color: #dc3545;
+          margin-bottom: 10px;
+      }
 
-        .app-name {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 5px;
-        }
+      .app-name {
+          font-size: 1.1em;
+          color: #666;
+          margin-bottom: 5px;
+      }
 
-        .developer-name {
-            font-size: 0.95em;
-            color: #999;
-        }
+      .developer-name {
+          font-size: 0.95em;
+          color: #999;
+      }
 
-        h2 {
-            font-size: 1.6em;
-            color: #2c3e50;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e9ecef;
-        }
+      h2 {
+          font-size: 1.6em;
+          color: #2c3e50;
+          margin-top: 35px;
+          margin-bottom: 15px;
+          padding-bottom: 10px;
+          border-bottom: 2px solid #e9ecef;
+      }
 
-        h3 {
-            font-size: 1.3em;
-            color: #495057;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
+      h3 {
+          font-size: 1.3em;
+          color: #495057;
+          margin-top: 25px;
+          margin-bottom: 12px;
+      }
 
-        p {
-            margin-bottom: 15px;
-            color: #555;
-        }
+      p {
+          margin-bottom: 15px;
+          color: #555;
+      }
 
-        ul, ol {
-            margin-left: 25px;
-            margin-bottom: 20px;
-        }
+      ul, ol {
+          margin-left: 25px;
+          margin-bottom: 20px;
+      }
 
-        li {
-            margin-bottom: 10px;
-            color: #555;
-        }
+      li {
+          margin-bottom: 10px;
+          color: #555;
+      }
 
-        .warning-box {
-            background-color: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
+      .warning-box {
+          background-color: #fff3cd;
+          border-left: 5px solid #ffc107;
+          padding: 20px;
+          margin: 25px 0;
+          border-radius: 5px;
+      }
 
-        .warning-box h3 {
-            color: #856404;
-            margin-top: 0;
-        }
+      .warning-box h3 {
+          color: #856404;
+          margin-top: 0;
+      }
 
-        .info-box {
-            background-color: #d1ecf1;
-            border-left: 5px solid #17a2b8;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
+      .info-box {
+          background-color: #d1ecf1;
+          border-left: 5px solid #17a2b8;
+          padding: 20px;
+          margin: 25px 0;
+          border-radius: 5px;
+      }
 
-        .info-box h3 {
-            color: #0c5460;
-            margin-top: 0;
-        }
+      .info-box h3 {
+          color: #0c5460;
+          margin-top: 0;
+      }
 
-        .danger-box {
-            background-color: #f8d7da;
-            border-left: 5px solid #dc3545;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-        }
+      .danger-box {
+          background-color: #f8d7da;
+          border-left: 5px solid #dc3545;
+          padding: 20px;
+          margin: 25px 0;
+          border-radius: 5px;
+      }
 
-        .danger-box h3 {
-            color: #721c24;
-            margin-top: 0;
-        }
+      .danger-box h3 {
+          color: #721c24;
+          margin-top: 0;
+      }
 
-        .steps {
-            background-color: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 25px 0;
-        }
+      .steps {
+          background-color: #f8f9fa;
+          padding: 25px;
+          border-radius: 8px;
+          margin: 25px 0;
+      }
 
-        .step {
-            margin-bottom: 20px;
-            padding-left: 30px;
-            position: relative;
-        }
+      .step {
+          margin-bottom: 20px;
+          padding-left: 30px;
+          position: relative;
+      }
 
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #007bff;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
+      .step-number {
+          position: absolute;
+          left: 0;
+          top: 0;
+          background: #007bff;
+          color: white;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          font-size: 0.9em;
+      }
 
-        .contact-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 8px;
-            margin: 30px 0;
-            text-align: center;
-        }
+      .contact-box {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 30px;
+          border-radius: 8px;
+          margin: 30px 0;
+          text-align: center;
+      }
 
-        .contact-box h3 {
-            color: white;
-            margin-top: 0;
-        }
+      .contact-box h3 {
+          color: white;
+          margin-top: 0;
+      }
 
-        .contact-box a {
-            color: white;
-            font-weight: bold;
-            text-decoration: underline;
-        }
+      .contact-box a {
+          color: white;
+          font-weight: bold;
+          text-decoration: underline;
+      }
 
-        .email-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: transform 0.2s;
-        }
+      .email-button {
+          display: inline-block;
+          background: rgb(196, 44, 226);
+          color: #667eea;
+          padding: 12px 30px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-weight: bold;
+          margin-top: 15px;
+          transition: transform 0.2s;
+      }
 
-        .email-button:hover {
-            transform: translateY(-2px);
-        }
+      .email-button:hover {
+          transform: translateY(-2px);
+      }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px 0;
+      }
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
+      th, td {
+          padding: 12px;
+          text-align: left;
+          border: 1px solid #ddd;
+      }
 
-        th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-            color: #2c3e50;
-        }
+      th {
+          background-color: #f8f9fa;
+          font-weight: bold;
+          color: #2c3e50;
+      }
 
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #e9ecef;
-            color: #6c757d;
-            font-size: 0.9em;
-        }
+      .footer {
+          text-align: center;
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 2px solid #e9ecef;
+          color: #6c757d;
+          font-size: 0.9em;
+      }
 
-        .footer a {
-            color: #667eea;
-            text-decoration: none;
-        }
+      .footer a {
+          color: #667eea;
+          text-decoration: none;
+      }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+      .footer a:hover {
+          text-decoration: underline;
+      }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
+      @media (max-width: 768px) {
+          .container {
+              padding: 20px;
+          }
 
-            h1 {
-                font-size: 1.8em;
-            }
+          h1 {
+              font-size: 1.8em;
+          }
 
-            h2 {
-                font-size: 1.4em;
-            }
-        }
+          h2 {
+              font-size: 1.4em;
+          }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <h1>계정 및 데이터 삭제</h1>
-            <div class="app-name">배달의비번 (Baebee)</div>
-            <div class="developer-name">개발자: 최장민</div>
+      <div class="header">
+        <h1>계정 및 데이터 삭제</h1>
+        <div class="app-name">배달의비번 (Baebee)</div>
+        <div class="developer-name">개발자: 최장민</div>
+      </div>
+
+      <div class="danger-box">
+        <h3>⚠️ 중요 안내</h3>
+        <p>
+          계정을 삭제하면 <strong>모든 데이터가 영구적으로 삭제</strong>되며
+          복구할 수 없습니다. 신중하게 결정해 주시기 바랍니다.
+        </p>
+      </div>
+
+      <h2>1. 앱 내에서 계정 삭제</h2>
+      <p>배달의비번 앱에서 직접 계정을 삭제할 수 있습니다.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <strong>앱 실행</strong><br />
+          배달의비번 앱을 실행합니다.
         </div>
-
-        <div class="danger-box">
-            <h3>⚠️ 중요 안내</h3>
-            <p>계정을 삭제하면 <strong>모든 데이터가 영구적으로 삭제</strong>되며 복구할 수 없습니다. 신중하게 결정해 주시기 바랍니다.</p>
+        <div class="step">
+          <div class="step-number">2</div>
+          <strong>설정 메뉴 열기</strong><br />
+          하단 내비게이션 바에서 '설정' 탭을 선택합니다.
         </div>
-
-        <h2>1. 앱 내에서 계정 삭제</h2>
-        <p>배달의비번 앱에서 직접 계정을 삭제할 수 있습니다.</p>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <strong>앱 실행</strong><br>
-                배달의비번 앱을 실행합니다.
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <strong>설정 메뉴 열기</strong><br>
-                하단 내비게이션 바에서 '설정' 탭을 선택합니다.
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <strong>계정 관리</strong><br>
-                '계정 관리' 메뉴로 이동합니다.
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <strong>계정 삭제 버튼</strong><br>
-                '계정 삭제' 버튼을 클릭합니다.
-            </div>
-            <div class="step">
-                <div class="step-number">5</div>
-                <strong>확인</strong><br>
-                삭제 확인 대화상자에서 '삭제' 버튼을 클릭하여 최종 확인합니다.
-            </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <strong>계정 관리</strong><br />
+          '계정 관리' 메뉴로 이동합니다.
         </div>
-
-        <div class="info-box">
-            <h3>💡 개인용 모드 사용자</h3>
-            <p>개인용 모드(오프라인 모드)를 사용하는 경우 계정이 없으므로 앱을 삭제하면 모든 데이터가 제거됩니다. 별도의 계정 삭제 절차가 필요하지 않습니다.</p>
+        <div class="step">
+          <div class="step-number">4</div>
+          <strong>계정 삭제 버튼</strong><br />
+          '계정 삭제' 버튼을 클릭합니다.
         </div>
-
-        <h2>2. 이메일로 계정 삭제 요청</h2>
-        <p>앱을 삭제했거나 접근할 수 없는 경우, 이메일로 계정 삭제를 요청할 수 있습니다.</p>
-
-        <div class="contact-box">
-            <h3>📧 계정 삭제 요청</h3>
-            <p>아래 이메일로 계정 삭제 요청을 보내주세요.</p>
-            <p>제목: <strong>[계정 삭제 요청] 배달의비번</strong></p>
-            <p>본문에 다음 정보를 포함해 주세요:</p>
-            <ul style="text-align: left; display: inline-block; margin: 10px 0;">
-                <li>가입한 이메일 주소</li>
-                <li>삭제 사유 (선택사항)</li>
-            </ul>
-            <br>
-            <a href="mailto:tanggoon2009@gmail.com?subject=[계정 삭제 요청] 배달의비번" class="email-button">
-                이메일 보내기
-            </a>
-            <p style="margin-top: 15px; font-size: 0.9em;">
-                이메일: <a href="mailto:tanggoon2009@gmail.com">tanggoon2009@gmail.com</a>
-            </p>
+        <div class="step">
+          <div class="step-number">5</div>
+          <strong>확인</strong><br />
+          삭제 확인 대화상자에서 '삭제' 버튼을 클릭하여 최종 확인합니다.
         </div>
+      </div>
 
-        <div class="warning-box">
-            <h3>⏱️ 처리 시간</h3>
-            <p>이메일로 요청하신 경우, <strong>영업일 기준 7일 이내</strong>에 계정이 삭제되며, 완료 시 확인 이메일을 보내드립니다.</p>
+      <div class="info-box">
+        <h3>💡 개인용 모드 사용자</h3>
+        <p>
+          개인용 모드(오프라인 모드)를 사용하는 경우 계정이 없으므로 앱을
+          삭제하면 모든 데이터가 제거됩니다. 별도의 계정 삭제 절차가 필요하지
+          않습니다.
+        </p>
+      </div>
+
+      <h2>2. 이메일로 계정 삭제 요청</h2>
+      <p>
+        앱을 삭제했거나 접근할 수 없는 경우, 이메일로 계정 삭제를 요청할 수
+        있습니다.
+      </p>
+
+      <div class="contact-box">
+        <h3>📧 계정 삭제 요청</h3>
+        <p>아래 이메일로 계정 삭제 요청을 보내주세요.</p>
+        <p>제목: <strong>[계정 삭제 요청] 배달의비번</strong></p>
+        <p>본문에 다음 정보를 포함해 주세요:</p>
+        <ul style="text-align: left; display: inline-block; margin: 10px 0;">
+          <li>가입한 이메일 주소</li>
+          <li>삭제 사유 (선택사항)</li>
+        </ul>
+        <br />
+        <a
+          href="mailto:tanggoon2009@gmail.com?subject=[계정 삭제 요청] 배달의비번"
+          class="email-button"
+        >
+          이메일 보내기
+        </a>
+        <p style="margin-top: 15px; font-size: 0.9em;">
+          이메일:
+          <a href="mailto:tanggoon2009@gmail.com">tanggoon2009@gmail.com</a>
+        </p>
+      </div>
+
+      <div class="warning-box">
+        <h3>⏱️ 처리 시간</h3>
+        <p>
+          이메일로 요청하신 경우, <strong>영업일 기준 7일 이내</strong>에 계정이
+          삭제되며, 완료 시 확인 이메일을 보내드립니다.
+        </p>
+      </div>
+
+      <h2>3. 삭제되는 데이터</h2>
+      <p>계정 삭제 시 다음 데이터가 영구적으로 삭제됩니다:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>데이터 유형</th>
+            <th>삭제 여부</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>계정 정보</strong></td>
+            <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
+            <td>이메일, 비밀번호, 프로필 정보</td>
+          </tr>
+          <tr>
+            <td><strong>주소 정보</strong></td>
+            <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
+            <td>저장된 모든 배달 주소</td>
+          </tr>
+          <tr>
+            <td><strong>비밀번호 정보</strong></td>
+            <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
+            <td>저장된 건물 출입 비밀번호</td>
+          </tr>
+          <tr>
+            <td><strong>팀 데이터</strong></td>
+            <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
+            <td>팀 멤버십 정보 (팀 자체는 유지)</td>
+          </tr>
+          <tr>
+            <td><strong>GPS 추적 기록</strong></td>
+            <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
+            <td>배달 경로 및 위치 기록</td>
+          </tr>
+          <tr>
+            <td><strong>알림 로그</strong></td>
+            <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
+            <td>위치 기반 알림 이력</td>
+          </tr>
+          <tr>
+            <td><strong>백업 데이터</strong></td>
+            <td style="color: #ffc107; font-weight: bold;">30일 후 삭제</td>
+            <td>서버 백업본 (복구 불가능하게 처리)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4. 보관되는 데이터</h2>
+      <p>법적 의무 또는 정당한 사유로 다음 데이터는 일정 기간 보관됩니다:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>데이터 유형</th>
+            <th>보관 기간</th>
+            <th>보관 사유</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>구매 이력</strong></td>
+            <td>5년</td>
+            <td>전자상거래법 (세금 신고 목적)</td>
+          </tr>
+          <tr>
+            <td><strong>결제 기록</strong></td>
+            <td>5년</td>
+            <td>국세기본법 (거래 기록 보관 의무)</td>
+          </tr>
+          <tr>
+            <td><strong>서비스 이용 기록</strong></td>
+            <td>3개월</td>
+            <td>통신비밀보호법 (로그 기록 보관)</td>
+          </tr>
+          <tr>
+            <td><strong>부정 이용 기록</strong></td>
+            <td>1년</td>
+            <td>부정 이용 방지 및 재가입 제한</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box">
+        <h3>📋 법적 근거</h3>
+        <ul>
+          <li>
+            <strong>전자상거래 등에서의 소비자보호에 관한 법률</strong> - 계약
+            또는 청약철회 등에 관한 기록: 5년
+          </li>
+          <li>
+            <strong>국세기본법</strong> - 세법이 규정하는 모든 거래에 관한 장부
+            및 증빙서류: 5년
+          </li>
+          <li>
+            <strong>통신비밀보호법</strong> - 컴퓨터통신, 인터넷 로그기록자료,
+            접속지 추적자료: 3개월
+          </li>
+        </ul>
+      </div>
+
+      <h2>5. 개인용 모드 데이터 삭제</h2>
+      <p>개인용 모드(오프라인 모드)를 사용하는 경우:</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <strong>앱 삭제</strong><br />
+          기기에서 배달의비번 앱을 삭제하면 모든 로컬 데이터가 함께 삭제됩니다.
         </div>
-
-        <h2>3. 삭제되는 데이터</h2>
-        <p>계정 삭제 시 다음 데이터가 영구적으로 삭제됩니다:</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>데이터 유형</th>
-                    <th>삭제 여부</th>
-                    <th>설명</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>계정 정보</strong></td>
-                    <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
-                    <td>이메일, 비밀번호, 프로필 정보</td>
-                </tr>
-                <tr>
-                    <td><strong>주소 정보</strong></td>
-                    <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
-                    <td>저장된 모든 배달 주소</td>
-                </tr>
-                <tr>
-                    <td><strong>비밀번호 정보</strong></td>
-                    <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
-                    <td>저장된 건물 출입 비밀번호</td>
-                </tr>
-                <tr>
-                    <td><strong>팀 데이터</strong></td>
-                    <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
-                    <td>팀 멤버십 정보 (팀 자체는 유지)</td>
-                </tr>
-                <tr>
-                    <td><strong>GPS 추적 기록</strong></td>
-                    <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
-                    <td>배달 경로 및 위치 기록</td>
-                </tr>
-                <tr>
-                    <td><strong>알림 로그</strong></td>
-                    <td style="color: #dc3545; font-weight: bold;">즉시 삭제</td>
-                    <td>위치 기반 알림 이력</td>
-                </tr>
-                <tr>
-                    <td><strong>백업 데이터</strong></td>
-                    <td style="color: #ffc107; font-weight: bold;">30일 후 삭제</td>
-                    <td>서버 백업본 (복구 불가능하게 처리)</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2>4. 보관되는 데이터</h2>
-        <p>법적 의무 또는 정당한 사유로 다음 데이터는 일정 기간 보관됩니다:</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>데이터 유형</th>
-                    <th>보관 기간</th>
-                    <th>보관 사유</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>구매 이력</strong></td>
-                    <td>5년</td>
-                    <td>전자상거래법 (세금 신고 목적)</td>
-                </tr>
-                <tr>
-                    <td><strong>결제 기록</strong></td>
-                    <td>5년</td>
-                    <td>국세기본법 (거래 기록 보관 의무)</td>
-                </tr>
-                <tr>
-                    <td><strong>서비스 이용 기록</strong></td>
-                    <td>3개월</td>
-                    <td>통신비밀보호법 (로그 기록 보관)</td>
-                </tr>
-                <tr>
-                    <td><strong>부정 이용 기록</strong></td>
-                    <td>1년</td>
-                    <td>부정 이용 방지 및 재가입 제한</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="info-box">
-            <h3>📋 법적 근거</h3>
-            <ul>
-                <li><strong>전자상거래 등에서의 소비자보호에 관한 법률</strong> - 계약 또는 청약철회 등에 관한 기록: 5년</li>
-                <li><strong>국세기본법</strong> - 세법이 규정하는 모든 거래에 관한 장부 및 증빙서류: 5년</li>
-                <li><strong>통신비밀보호법</strong> - 컴퓨터통신, 인터넷 로그기록자료, 접속지 추적자료: 3개월</li>
-            </ul>
+        <div class="step">
+          <div class="step-number">2</div>
+          <strong>또는 앱 내 데이터 초기화</strong><br />
+          설정 → 데이터 관리 → 전체 데이터 초기화를 선택합니다.
         </div>
+      </div>
 
-        <h2>5. 개인용 모드 데이터 삭제</h2>
-        <p>개인용 모드(오프라인 모드)를 사용하는 경우:</p>
+      <div class="warning-box">
+        <h3>⚠️ 주의사항</h3>
+        <ul>
+          <li>
+            개인용 모드의 데이터는 기기에만 저장되므로 서버에 계정 정보가
+            없습니다
+          </li>
+          <li>앱 삭제 후에는 데이터를 복구할 수 없습니다</li>
+          <li>
+            백업 기능을 사용하여 미리 데이터를 내보내기 하는 것을 권장합니다
+          </li>
+        </ul>
+      </div>
 
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <strong>앱 삭제</strong><br>
-                기기에서 배달의비번 앱을 삭제하면 모든 로컬 데이터가 함께 삭제됩니다.
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <strong>또는 앱 내 데이터 초기화</strong><br>
-                설정 → 데이터 관리 → 전체 데이터 초기화를 선택합니다.
-            </div>
-        </div>
+      <h2>6. 계정 삭제 후 재가입</h2>
+      <p>
+        계정 삭제 후 언제든지 새로운 계정으로 다시 가입할 수 있습니다. 단, 이전
+        데이터는 복구되지 않으며 새로운 계정으로 시작하게 됩니다.
+      </p>
 
-        <div class="warning-box">
-            <h3>⚠️ 주의사항</h3>
-            <ul>
-                <li>개인용 모드의 데이터는 기기에만 저장되므로 서버에 계정 정보가 없습니다</li>
-                <li>앱 삭제 후에는 데이터를 복구할 수 없습니다</li>
-                <li>백업 기능을 사용하여 미리 데이터를 내보내기 하는 것을 권장합니다</li>
-            </ul>
-        </div>
+      <div class="info-box">
+        <h3>💡 재가입 제한</h3>
+        <p>
+          서비스 부정 이용 이력이 있는 경우, 계정 삭제 후
+          <strong>1년간 재가입이 제한</strong>될 수 있습니다.
+        </p>
+      </div>
 
-        <h2>6. 계정 삭제 후 재가입</h2>
-        <p>계정 삭제 후 언제든지 새로운 계정으로 다시 가입할 수 있습니다. 단, 이전 데이터는 복구되지 않으며 새로운 계정으로 시작하게 됩니다.</p>
+      <h2>7. 문의하기</h2>
+      <p>
+        계정 삭제와 관련하여 문의사항이 있으시면 아래 연락처로 문의해 주세요:
+      </p>
 
-        <div class="info-box">
-            <h3>💡 재가입 제한</h3>
-            <p>서비스 부정 이용 이력이 있는 경우, 계정 삭제 후 <strong>1년간 재가입이 제한</strong>될 수 있습니다.</p>
-        </div>
+      <div class="contact-box">
+        <h3>📞 고객 지원</h3>
+        <p>
+          <strong>이메일:</strong>
+          <a href="mailto:tanggoon2009@gmail.com">tanggoon2009@gmail.com</a>
+        </p>
+        <p><strong>개발자:</strong> 최장민</p>
+        <p><strong>응답 시간:</strong> 영업일 기준 48시간 이내</p>
+      </div>
 
-        <h2>7. 문의하기</h2>
-        <p>계정 삭제와 관련하여 문의사항이 있으시면 아래 연락처로 문의해 주세요:</p>
-
-        <div class="contact-box">
-            <h3>📞 고객 지원</h3>
-            <p><strong>이메일:</strong> <a href="mailto:tanggoon2009@gmail.com">tanggoon2009@gmail.com</a></p>
-            <p><strong>개발자:</strong> 최장민</p>
-            <p><strong>응답 시간:</strong> 영업일 기준 48시간 이내</p>
-        </div>
-
-        <div class="footer">
-            <p>
-                <a href="index.html">홈으로 돌아가기</a> |
-                <a href="privacy-policy.html">개인정보 처리방침</a> |
-                <a href="terms_of_service.html">이용약관</a>
-            </p>
-            <p style="margin-top: 15px;">
-                <strong>배달의비번 (Baebee)</strong><br>
-                © 2025 Baebee. All rights reserved.
-            </p>
-        </div>
+      <div class="footer">
+        <p>
+          <a href="index.html">홈으로 돌아가기</a> |
+          <a href="privacy-policy.html">개인정보 처리방침</a> |
+          <a href="terms_of_service.html">이용약관</a>
+        </p>
+        <p style="margin-top: 15px;">
+          <strong>배달의비번 (Baebee)</strong><br />
+          © 2025 Baebee. All rights reserved.
+        </p>
+      </div>
     </div>
-</body>
+  </body>
 </html>
